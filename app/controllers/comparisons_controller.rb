@@ -1,24 +1,37 @@
 class ComparisonsController < ApplicationController
-  SAMPLE_TEXT =
-  "<header>
-    <title> Sample Title </title>
-  </header>
+  # SAMPLE_TEXT =
+  # "<header>
+  #   <title> Sample Title </title>
+  # </header>
 
-  <navbar>
-    <ul>
-      <li>Sample Title 1</li>
-      <li>Sample Title 2</li>
-    </ul>
-  </navbar>
+  # <navbar>
+  #   <ul>
+  #     <li>Sample Title 1</li>
+  #     <li>Sample Title 2</li>
+  #   </ul>
+  # </navbar>
 
-  <footer>
-    <a href='#'>First Link</a>
-    <a href='#'>Second Link</a>
-  </footer>"
+  # <footer>
+  #   <a href='#'>First Link</a>
+  #   <a href='#'>Second Link</a>
+  # </footer>"
 
-  def compare
-    @sample_text = SAMPLE_TEXT
+
+  # def compare
+  #   @sample_text = SAMPLE_TEXT
+  # end
+
+  def create
+    answers = Array.new
+    f = File.open("./db/modelAns.csv", "r")
+    f.each_line { |line|
+      fields = line.split(',')
+       a = Ans.new
+        a.model = fields[0].tr_s('"', '').strip
+       answers.push(a)
+    }
   end
+
 
   def compare_sections
     distance = Text::Levenshtein.distance(params[:left_section], params[:right_section]).to_f
