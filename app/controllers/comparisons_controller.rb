@@ -30,7 +30,7 @@ class ComparisonsController < ApplicationController
   def calculate_diff(distance)
     return 0 if params[:left_section].length.zero? && params[:right_section].length.zero?
     return 100 if params[:left_section].length.zero? && params[:right_section].length.positive?
-    string_length = [params[:left_section].length, params[:right_section].length].max 
+    string_length = [params[:left_section].length, params[:right_section].length].max
     distance / string_length * 100
   end
 end
