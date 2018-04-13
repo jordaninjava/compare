@@ -16,5 +16,11 @@
     <div class="result text-success">
       Both contents are same!
     </div>
-  </div>
+
+  <% Answer.all.each do |answer| %>
+    <%= answer.model %>
+    <% end %>
+</div>
+
+
 </div>

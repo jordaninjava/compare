@@ -21,6 +21,12 @@ class ComparisonsController < ApplicationController
   #   @sample_text = SAMPLE_TEXT
   # end
 
+
+  def index
+    @answers = Answer.all
+  end
+
+
   def create
     answers = Array.new
     f = File.open("./db/modelAns.csv", "r")
